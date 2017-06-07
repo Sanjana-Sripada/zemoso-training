@@ -1,0 +1,84 @@
+import java.io.*;
+import java.util.*;
+
+import java.util.Calendar;
+public class Kycform{
+public void kyc(){
+Calendar signup_date=Calendar.getInstance();
+  signup_date.set(2011,8,12);
+Calendar cd=Calendar.getInstance();
+  cd.set(2017,6,7);
+Calendar ann=Calendar.getInstance();
+ann.set(Calendar.YEAR,cd.get(Calendar.YEAR));
+ann.set(Calendar.MONTH,signup_date.get(Calendar.MONTH));
+ann.set(Calendar.DATE,signup_date.get(Calendar.DATE));
+Calendar sd1=Calendar.getInstance();
+sd1.setTime(ann.getTime());
+sd1.add(Calendar.DATE, -30);
+Calendar sd2=Calendar.getInstance();
+sd2.setTime(ann.getTime());
+sd2.add(Calendar.DATE, +30);  
+Calendar minlimit=Calendar.getInstance();
+Calendar maxlimit=Calendar.getInstance();
+if (ann.after(cd)) { //if sd is after the current date
+    if (cd.after(sd1)) { //if the current date is within the -30 range of sd
+
+     minlimit = sd1;
+     maxlimit = cd;
+ }
+       else{  //if the current date is before the -30 range of sd, we need to consider the range of the previous year
+
+              minlimit = sd1;
+
+              minlimit.add(ann.YEAR,-1);
+
+maxlimit = sd2;
+
+maxlimit.add(ann.YEAR,-1);
+ }
+System.out.println("Min and Max dates are:");
+System.out.println(minlimit.getTime());
+
+System.out.println(maxlimit.getTime());
+}
+
+else{  //if sd is before the current date
+
+       if (cd.after(sd2)){  //if current date is after the +30 range of sd
+
+              minlimit = sd1;
+
+     maxlimit = sd2;
+
+   }
+
+       else{  //if current date is within the +30 range of sd
+
+              minlimit = sd1;
+
+     maxlimit = cd;
+
+   }
+
+ 
+System.out.println("Min and Max dates are:");
+System.out.println(minlimit.getTime());
+
+System.out.println(maxlimit.getTime());
+
+ 
+
+}
+
+}
+
+}
+public class Kyctest{
+public static void main(String[] args){
+Kycform obj=new Kycform();
+obj.kyc();
+}
+}
+
+
+ 

@@ -1,0 +1,26 @@
+import java.io.*;
+import java.util.*;
+public class Strex{
+
+public void charStr(String s){
+Set<Integer> chars = new HashSet<>();
+if( s.chars() 
+    .filter((i -> i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z')) //filters all the letters
+    .filter(chars::add) //adds the letters to chars set
+    .filter(i -> chars.size() == 26) //size of chars is 26
+    .findAny().isPresent())
+{
+  System.out.println("The given string contains all letters of the alphabet"); 
+}
+else{
+System.out.println("The given string does not contain all letters of the alphabet");
+}
+}
+}
+
+public class Test{
+public static void main(String args[]){
+Strex s=new Strex();
+s.charStr("abcdefshABdgf  fufhc hfqiwteufhdncaksdjgh     ijklmnopqrsuvwxyz");
+}//end of main
+}

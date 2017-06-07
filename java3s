@@ -1,0 +1,38 @@
+Write a java program that will ping any host and computes the median of the time taken.
+
+Use the system ping utility, do not use any deprecated methods
+
+import java.io.*;
+import java.net.*;
+public class pingTest {
+
+    public static void main(String[] args) {
+       Pingex obj=new Pingex();
+	obj.pingIp("127.0.0.1");
+    }
+}
+
+class Pingex{
+public void pingIp(String ip){
+String pingResult = "";
+
+        String cmd = "ping -c 5 " + ip;
+        try {
+            Runtime r = Runtime.getRuntime();
+            Process p = r.exec(cmd);
+
+            BufferedReader in = new BufferedReader(new
+            InputStreamReader(p.getInputStream()));
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                System.out.println(inputLine);
+                pingResult += inputLine;
+            }
+            in.close();
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+}
+}
+
