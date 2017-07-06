@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "Fb page likes",
+  "description": "This extension gives a list of names with their linkedin url's",
+  "version": "0.1",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "main.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.facebook.com/zemosotechnologies/settings/?tab=people_and_other_pages"],
+      "js": ["content_script.js"]
+    }
+],
+"permissions": [
+    "activeTab"
+]
+}
